@@ -24,18 +24,6 @@ export const PeopleTable = ({ people }: { people: Person[] }) => {
 
   let filteredPeople = [...peopleModified];
 
-  if (query) {
-    const normalizedQuery = query.toLowerCase().trim();
-
-    filteredPeople = peopleModified.filter(person => {
-      return (
-        person.name.toLowerCase().includes(normalizedQuery) ||
-        person.motherName?.toLowerCase().includes(normalizedQuery) ||
-        person.fatherName?.toLowerCase().includes(normalizedQuery)
-      );
-    });
-  }
-
   if (sex) {
     filteredPeople = peopleModified.filter(person => {
       return person.sex === sex;
@@ -73,6 +61,18 @@ export const PeopleTable = ({ people }: { people: Person[] }) => {
       }
 
       return isAsc ? result : -result;
+    });
+  }
+
+  if (query) {
+    const normalizedQuery = query.toLowerCase().trim();
+    console.log(normalizedQuery);
+    filteredPeople = peopleModified.filter(person => {
+      return (
+        person.name.toLowerCase().includes(normalizedQuery) ||
+        person.motherName?.toLowerCase().includes(normalizedQuery) ||
+        person.fatherName?.toLowerCase().includes(normalizedQuery)
+      );
     });
   }
 
