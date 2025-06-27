@@ -25,13 +25,13 @@ export const PeopleTable = ({ people }: { people: Person[] }) => {
   let filteredPeople = [...peopleModified];
 
   if (sex) {
-    filteredPeople = peopleModified.filter(person => {
+    filteredPeople = filteredPeople.filter(person => {
       return person.sex === sex;
     });
   }
 
   if (centuries.length) {
-    filteredPeople = peopleModified.filter(person => {
+    filteredPeople = filteredPeople.filter(person => {
       return centuries.some(
         century =>
           person.born < +century * 100 && person.born > (+century - 1) * 100,
@@ -66,8 +66,8 @@ export const PeopleTable = ({ people }: { people: Person[] }) => {
 
   if (query) {
     const normalizedQuery = query.toLowerCase().trim();
-    console.log(normalizedQuery);
-    filteredPeople = peopleModified.filter(person => {
+
+    filteredPeople = filteredPeople.filter(person => {
       return (
         person.name.toLowerCase().includes(normalizedQuery) ||
         person.motherName?.toLowerCase().includes(normalizedQuery) ||
